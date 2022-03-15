@@ -25,7 +25,8 @@ class _login_pageState extends State<login_page> {
                   child: Column(
                     children: [
                       Image.network(
-                        'http://hippo-pi.com/DQS/assets/image/logo_dqs.PNG',
+                        'https://cdn-icons-png.flaticon.com/512/295/295128.png',
+                        //'http://103.129.15.182/DQS/assets/image/logo_dqs.PNG',
                         width: 100,
                       ),
                       Text(
