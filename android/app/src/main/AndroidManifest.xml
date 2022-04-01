@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.dqs_app">
+    package="com.example.nice_app">
    <application
-        android:label="dqs_app"
+        android:label="nice_app"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"

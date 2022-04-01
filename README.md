@@ -1,4 +1,4 @@
-# dqs_app
+# nice_app
 
 A new Flutter project.
 
