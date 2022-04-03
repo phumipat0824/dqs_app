@@ -6,6 +6,8 @@ import 'package:flutter_signin_button/button_view.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:http/http.dart' as http;
 import 'package:dqs_mobileapp/DQS_scan.dart';
+import 'package:crypto/crypto.dart';
+
 class login_page extends StatefulWidget {
   const login_page({Key? key}) : super(key: key);
 
@@ -84,7 +86,7 @@ class _login_pageState extends State<login_page> {
                                 print('username: ${username.text}');
                                 print('password: ${password.text}');
                                 getUers();
-                                if(checkLogin(username.text,password.text)==true){
+                                if(checkLogin(username.text,password.text)){
                                   Navigator.push(
                                   context,
                                   MaterialPageRoute(builder: (context) => const DQS_scan()),
@@ -168,24 +170,6 @@ class _login_pageState extends State<login_page> {
       ),
     );
   }
-  // getUers() async {
-  //   var api = Uri.parse('http://103.129.15.182/DQS/index.php/Api_test/Api');
-  //   var response = await http.post(api,
-  //       headers: <String, String>{
-  //         'Content-Type': 'application/json; charset=UTF-8',
-  //       },
-  //       body: jsonEncode(<String, String>{
-  //         // "type": "Login",
-  //         "username": "nice",
-  //         "password": "1234"
-  //       }));
-  //   Fluttertoast.showToast(
-  //     msg: response.body.toString(),
-  //   );
-  //   print('test555');
-  //   return 250;
-  // }
-
   getUers() async {
     var url = Uri.parse('http://103.129.15.182/DQS/index.php/Api_test/Api');
     var response = await http.get(url);
@@ -197,12 +181,18 @@ class _login_pageState extends State<login_page> {
     
   }
 
-checkLogin(String username,String password) async {
+checkLogin(String username,String password) {
+  var hashpass =  md5.convert(utf8.encode(password)).toString();
+  // print(username);
+  // print(password);
+  // print(hashpass);
+  // print(userdata.length);
     for (var i = 0; i < userdata.length; i++) {
-      if ((username == userdata[i]['mem_username'] || username == userdata[i]['mem_email']) && password == userdata[i]['mem_password']) {
+      if ((username == userdata[i]['mem_username'] || username == userdata[i]['mem_email']) && hashpass == userdata[i]['mem_password'] ) {
         // print('yes');
         return true;
       } 
+      
     }
     return false;
     
