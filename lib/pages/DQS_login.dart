@@ -5,7 +5,8 @@ import 'package:flutter_signin_button/button_list.dart';
 import 'package:flutter_signin_button/button_view.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:http/http.dart' as http;
-import 'package:dqs_mobileapp/DQS_scan.dart';
+import 'package:qr_code_scanner/qr_code_scanner.dart';
+
 import 'package:crypto/crypto.dart';
 
 class login_page extends StatefulWidget {
@@ -87,10 +88,10 @@ class _login_pageState extends State<login_page> {
                                 print('password: ${password.text}');
                                 getUers();
                                 if(checkLogin(username.text,password.text)){
-                                  Navigator.push(
-                                  context,
-                                  MaterialPageRoute(builder: (context) => const DQS_scan()),
-                                );
+                                //   Navigator.push(
+                                //   context,
+                                //   MaterialPageRoute(builder: (context) => const ()),
+                                // );
                                 }else{
                                   print('worng');
                                 }
