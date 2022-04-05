@@ -134,35 +134,35 @@ class _login_pageState extends State<login_page> {
                                       TextStyle(fontSize: 16))),
                             ),
                             SizedBox(height: 30),
-                            Row(children: <Widget>[
-                              Expanded(
-                                child: new Container(
-                                    margin: const EdgeInsets.only(
-                                        left: 10.0, right: 20.0),
-                                    child: Divider(
-                                      color: Colors.black,
-                                      height: 80,
-                                    )),
-                              ),
-                              Text("หรือ"),
-                              Expanded(
-                                child: new Container(
-                                    margin: const EdgeInsets.only(
-                                        left: 20.0, right: 10.0),
-                                    child: Divider(
-                                      color: Colors.black,
-                                      height: 80,
-                                    )),
-                              ),
-                            ]),
-                            //Divider(color: Colors.grey[300],),
-                            SizedBox(height: 5),
+                            // Row(children: <Widget>[
+                            //   Expanded(
+                            //     child: new Container(
+                            //         margin: const EdgeInsets.only(
+                            //             left: 10.0, right: 20.0),
+                            //         child: Divider(
+                            //           color: Colors.black,
+                            //           height: 80,
+                            //         )),
+                            //   ),
+                            //   Text("หรือ"),
+                            //   Expanded(
+                            //     child: new Container(
+                            //         margin: const EdgeInsets.only(
+                            //             left: 20.0, right: 10.0),
+                            //         child: Divider(
+                            //           color: Colors.black,
+                            //           height: 80,
+                            //         )),
+                            //   ),
+                            // ]),
+                            // //Divider(color: Colors.grey[300],),
+                            // SizedBox(height: 5),
 
-                            SignInButton(
-                              Buttons.Google,
-                              text: "เข้าสู่ระบบด้วย Google",
-                              onPressed: () {},
-                            ),
+                            // SignInButton(
+                            //   Buttons.Google,
+                            //   text: "เข้าสู่ระบบด้วย Google",
+                            //   onPressed: () {},
+                            // ),
                             // ElevatedButton(
                             //   onPressed: () {},
                             //   child: Text("เข้าสู่ระบบด้วย Google Account"),
