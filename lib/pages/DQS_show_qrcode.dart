@@ -33,7 +33,9 @@ class _DQS_show_qrcodeState extends State<DQS_show_qrcode> {
             data: '${widget.value_url}',
             version: QrVersions.auto,
             size: 300,
-          //  embeddedImage: AssetImage('assets/images/logo.png'), เพิ่มโลโก้เอา path มาใส่
+            embeddedImage: AssetImage('assets/logo_dqs.png'),
+            embeddedImageStyle: QrEmbeddedImageStyle(size: Size(90, 90),),
+             
             backgroundColor: Colors.white,
           ),
           SizedBox(height: 40),

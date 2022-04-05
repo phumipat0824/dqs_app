@@ -46,6 +46,15 @@ dependencies:
   qr_code_scanner: ^0.7.0
   barcode_widget: ^2.0.1
   dio: ^4.0.6
+  animated_splash_screen: ^1.1.0
+  page_transition: ^2.0.5
+  flutter_native_splash: ^2.1.3+1
+
+flutter_native_splash:
+  color: '#100570'
+  image: assets/logo_dqs_new.png
+  android: true
+  ios: true
 dev_dependencies:
   flutter_test:
     sdk: flutter
