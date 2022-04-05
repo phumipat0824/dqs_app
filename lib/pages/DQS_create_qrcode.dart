@@ -37,6 +37,7 @@ class _DQS_create_qrcodeState extends State<DQS_create_qrcode> {
                 child: Center(
                   child: Column(
                     children: [
+                      SizedBox(height: 80),
                       Text(
                         'สร้างคิวอาร์โค้ด',
                         style: TextStyle(
@@ -120,7 +121,7 @@ class _DQS_create_qrcodeState extends State<DQS_create_qrcode> {
                             ]),
                             SizedBox(height: 20),
                             Container(
-                              width: 350.0,
+                              width: 300.0,
                               child: TextField(
                                   controller: url,
                                   decoration: InputDecoration(

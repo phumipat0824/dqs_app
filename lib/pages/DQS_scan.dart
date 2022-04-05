@@ -36,7 +36,6 @@ class _DQS_scanqrcodeState extends State<DQS_scanqrcode> {
           Expanded(
             flex: 4,
             child: _buildQrView(context),
-            
           ),
           Expanded(
             flex: 1,
@@ -53,9 +52,9 @@ class _DQS_scanqrcodeState extends State<DQS_scanqrcode> {
                           color: Colors.white24,
                         ),
                         child: Text(
-                            'Barcode Type: ${describeEnum(result!.format)}   Data: ${result!.code}')
-                       )
-                 
+                            'Barcode Type: ${describeEnum(result!.format)}   Data: ${result!.code}'))
+                  else
+                    Text('Scan Qr code'),
                 ],
               ),
             ),
@@ -146,9 +145,7 @@ class _DQS_scanqrcodeState extends State<DQS_scanqrcode> {
                       ],
                     ),
                   ),
-                ),
-                
-                 
+                )
               ],
             ),
           ),
