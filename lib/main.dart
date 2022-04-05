@@ -9,7 +9,7 @@ import 'package:dqs_mobileapp/pages/DQS_create_qrcode.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:page_transition/page_transition.dart';
 
-import 'package:file_picker/file_picker.dart';
+
 import 'package:path/path.dart';
 
 void main() {
@@ -102,6 +102,7 @@ void _incrementCounter() {
         child: _widgetOptions.elementAt(_selectedIndex),
       ),
       bottomNavigationBar: BottomNavigationBar(
+        backgroundColor: Color.fromARGB(156, 246, 6, 6),
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(Icons.qr_code),
@@ -117,7 +118,7 @@ void _incrementCounter() {
           ),
         ],
         currentIndex: _selectedIndex,
-        selectedItemColor: Colors.amber[800],
+        selectedItemColor: Color.fromARGB(0, 255, 255, 255),
         onTap: _onItemTapped,
       ),
     );

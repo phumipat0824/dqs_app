@@ -37,28 +37,6 @@ class _DQS_scanqrcodeState extends State<DQS_scanqrcode> {
             flex: 4,
             child: _buildQrView(context),
           ),
-          Expanded(
-            flex: 1,
-            child: FittedBox(
-              fit: BoxFit.contain,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: <Widget>[
-                  if (result != null)
-                    Container(
-                        padding: EdgeInsets.all(12),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(8),
-                          color: Colors.white24,
-                        ),
-                        child: Text(
-                            'Barcode Type: ${describeEnum(result!.format)}   Data: ${result!.code}'))
-                  else
-                    Text('Scan Qr code'),
-                ],
-              ),
-            ),
-          )
         ],
       ),
     );
@@ -96,12 +74,14 @@ class _DQS_scanqrcodeState extends State<DQS_scanqrcode> {
                   right: 0.0,
                   bottom: 0.0,
                   child: Container(
-                    width: 50,
-                    height: 50,
+                    width: 60,
+                    height: 60,
                     decoration: BoxDecoration(color: Colors.black26),
+                    
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.center,
+                      
                       children: <Widget>[
                         IconButton(
                           color: Colors.white,
@@ -141,16 +121,53 @@ class _DQS_scanqrcodeState extends State<DQS_scanqrcode> {
                             setState(() {});
                           },
                         ),
-                      
                       ],
+                      
                     ),
+                    
                   ),
+                ),
+                Container(
+                  alignment: FractionalOffset.bottomCenter,
+                  
+                      
+                      child: Column(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                        children: [
+                          Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            
+                            children: <Widget>[
+                              if (result != null)
+                                
+                                Container(
+                                  
+                                    padding: EdgeInsets.all(12),
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(8),
+                                      color: Colors.white24,
+                                    ),
+                                    child: Text('Data: ${result!.code}'))
+                              else
+                              
+                                Text(' ')
+                            ],
+                          ),
+                        ],
+                      ),
+                    
+                  
                 )
               ],
+              
             ),
+            
           ),
+          
         ],
       ),
+      
     );
   }
 
