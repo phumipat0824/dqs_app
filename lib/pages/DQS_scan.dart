@@ -31,10 +31,13 @@ class _DQS_scanqrcodeState extends State<DQS_scanqrcode> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color.fromRGBO(16, 5, 117, 35),
       body: Column(
         children: <Widget>[
-          Expanded(flex: 4, child: _buildQrView(context)),
+          Expanded(
+            flex: 4,
+            child: _buildQrView(context),
+            
+          ),
           Expanded(
             flex: 1,
             child: FittedBox(
@@ -50,54 +53,8 @@ class _DQS_scanqrcodeState extends State<DQS_scanqrcode> {
                           color: Colors.white24,
                         ),
                         child: Text(
-                            'Barcode Type: ${describeEnum(result!.format)}   Data: ${result!.code}'))
-                  else
-                    //Text('Scan Qr code'),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: <Widget>[
-                      IconButton(
-                         color: Colors.white,
-                        // icon:Icon(Icons.flash_off),
-                        icon: FutureBuilder<bool?>(
-                          future: controller?.getFlashStatus(),
-                          builder: (context, snapshot) {
-                            if (snapshot.data != null) {
-                              return Icon(
-                                snapshot.data! ?  Icons.flash_on : Icons.flash_off );
-                            } else {
-                              return Container();
-                            }
-                          },
-                        ),
-                        onPressed: () async {
-                          await controller?.toggleFlash();
-                          setState(() {});
-                        },
-                      ),
-                      IconButton(
-                         color: Colors.white,
-                        // icon: Icon(Icons.switch_camera),
-                         icon: FutureBuilder(
-                          future: controller?.getCameraInfo(),
-                          builder: (context, snapshot) {
-                            if (snapshot.data != null) {
-                              return Icon(Icons.switch_camera);
-                               
-                            } else {
-                              return Container();
-                            }
-                          },
-                        ),
-                        onPressed: () async {
-                          await controller?.flipCamera();
-                          setState(() {});
-                        },
-                      ),
-                     
-                    ],
-                  ),
+                            'Barcode Type: ${describeEnum(result!.format)}   Data: ${result!.code}')
+                       )
                  
                 ],
               ),
@@ -116,18 +73,88 @@ class _DQS_scanqrcodeState extends State<DQS_scanqrcode> {
         : 300.0;
     // To ensure the Scanner view is properly sizes after rotation
     // we need to listen for Flutter SizeChanged notification and update controller
-    return QRView(
-      key: qrKey,
-      onQRViewCreated: _onQRViewCreated,
-      overlay: QrScannerOverlayShape(
-          borderColor: Colors.red,
-          borderRadius: 10,
-          borderLength: 30,
-          borderWidth: 10,
-          cutOutSize: scanArea),
-      onPermissionSet: (ctrl, p) => _onPermissionSet(context, ctrl, p),
+    return Scaffold(
+      body: Column(
+        children: [
+          Expanded(
+            flex: 4,
+            child: Stack(
+              children: [
+                QRView(
+                  key: qrKey,
+                  onQRViewCreated: _onQRViewCreated,
+                  overlay: QrScannerOverlayShape(
+                      borderColor: Colors.red,
+                      borderRadius: 10,
+                      borderLength: 30,
+                      borderWidth: 10,
+                      cutOutSize: scanArea),
+                  onPermissionSet: (ctrl, p) =>
+                      _onPermissionSet(context, ctrl, p),
+                ),
+                Positioned(
+                  left: 0.0,
+                  right: 0.0,
+                  bottom: 0.0,
+                  child: Container(
+                    width: 50,
+                    height: 50,
+                    decoration: BoxDecoration(color: Colors.black26),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: <Widget>[
+                        IconButton(
+                          color: Colors.white,
+                          // icon:Icon(Icons.flash_off),
+                          icon: FutureBuilder<bool?>(
+                            future: controller?.getFlashStatus(),
+                            builder: (context, snapshot) {
+                              if (snapshot.data != null) {
+                                return Icon(snapshot.data!
+                                    ? Icons.flash_on
+                                    : Icons.flash_off);
+                              } else {
+                                return Container();
+                              }
+                            },
+                          ),
+                          onPressed: () async {
+                            await controller?.toggleFlash();
+                            setState(() {});
+                          },
+                        ),
+                        IconButton(
+                          color: Colors.white,
+                          // icon: Icon(Icons.switch_camera),
+                          icon: FutureBuilder(
+                            future: controller?.getCameraInfo(),
+                            builder: (context, snapshot) {
+                              if (snapshot.data != null) {
+                                return Icon(Icons.switch_camera);
+                              } else {
+                                return Container();
+                              }
+                            },
+                          ),
+                          onPressed: () async {
+                            await controller?.flipCamera();
+                            setState(() {});
+                          },
+                        ),
+                      
+                      ],
+                    ),
+                  ),
+                ),
+                
+                 
+              ],
+            ),
+          ),
+        ],
+      ),
     );
-    
   }
 
   void _onQRViewCreated(QRViewController controller) {
