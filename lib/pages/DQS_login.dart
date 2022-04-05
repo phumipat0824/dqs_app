@@ -89,13 +89,29 @@ class _login_pageState extends State<login_page> {
                                 print('username: ${username.text}');
                                 print('password: ${password.text}');
                                 getUers();
-                                if (checkLogin(username.text, password.text)) {
-                                  //   Navigator.push(
-                                  //   context,
-                                  //   MaterialPageRoute(builder: (context) => const ()),
-                                  // );
-                                } else {
-                                  print('worng');
+                                if(checkLogin(username.text,password.text)){
+                                  Fluttertoast.showToast(
+                                    msg: "เข้าสู่ระบบสำเร็จ!",
+                                    toastLength: Toast.LENGTH_SHORT,
+                                    gravity: ToastGravity.CENTER,
+                                    timeInSecForIosWeb: 1,
+                                    backgroundColor: Color.fromARGB(255, 0, 255, 13),
+                                    textColor: Colors.white,
+                                    fontSize: 16.0);
+                                //   Navigator.push(
+                                //   context,
+                                //   MaterialPageRoute(builder: (context) => const DQS_scan()),
+                                // );
+                                }else{
+                                  // print('worng');
+                                  Fluttertoast.showToast(
+                                    msg: "กรุณากรอกข้อมูลให้ถูกต้อง!",
+                                    toastLength: Toast.LENGTH_SHORT,
+                                    gravity: ToastGravity.CENTER,
+                                    timeInSecForIosWeb: 1,
+                                    backgroundColor: Colors.red,
+                                    textColor: Colors.white,
+                                    fontSize: 16.0);
                                 }
                                 // print('userdata : ${userdata.length}');
 
