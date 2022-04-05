@@ -146,6 +146,13 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  flutter_colorful_tab:
+    dependency: "direct main"
+    description:
+      name: flutter_colorful_tab
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.1.0"
   flutter_lints:
     dependency: "direct dev"
     description:
@@ -198,6 +205,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "9.2.0"
+  go_router:
+    dependency: "direct main"
+    description:
+      name: go_router
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "3.0.7"
   http:
     dependency: "direct main"
     description:
@@ -233,6 +247,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.1"
+  logging:
+    dependency: transitive
+    description:
+      name: logging
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.2"
   lottie:
     dependency: "direct main"
     description:
@@ -455,6 +476,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.1.0"
+  tab_indicator_styler:
+    dependency: "direct main"
+    description:
+      name: tab_indicator_styler
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.0.0"
   term_glyph:
     dependency: transitive
     description:
@@ -546,6 +574,14 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.1.1"
+    version: "2.1.0"
+  will_tabbar:
+    dependency: "direct main"
+    description:
+      name: will_tabbar
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.4"
   win32:
     dependency: transitive
     description:

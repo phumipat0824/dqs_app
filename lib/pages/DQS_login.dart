@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:dqs_mobileapp/pages/DQS_create_qrcode.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_signin_button/button_builder.dart';
 import 'package:flutter_signin_button/button_list.dart';
@@ -8,6 +9,7 @@ import 'package:http/http.dart' as http;
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 
 import 'package:crypto/crypto.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class login_page extends StatefulWidget {
   const login_page({Key? key}) : super(key: key);
@@ -89,29 +91,37 @@ class _login_pageState extends State<login_page> {
                                 print('username: ${username.text}');
                                 print('password: ${password.text}');
                                 getUers();
-                                if(checkLogin(username.text,password.text)){
+                                if (checkLogin(username.text, password.text)) {
+                                  setUsername(username.text);
                                   Fluttertoast.showToast(
-                                    msg: "เข้าสู่ระบบสำเร็จ!",
-                                    toastLength: Toast.LENGTH_SHORT,
-                                    gravity: ToastGravity.CENTER,
-                                    timeInSecForIosWeb: 1,
-                                    backgroundColor: Color.fromARGB(255, 0, 255, 13),
-                                    textColor: Colors.white,
-                                    fontSize: 16.0);
-                                //   Navigator.push(
-                                //   context,
-                                //   MaterialPageRoute(builder: (context) => const DQS_scan()),
-                                // );
-                                }else{
+                                      msg: "เข้าสู่ระบบสำเร็จ!",
+                                      toastLength: Toast.LENGTH_SHORT,
+                                      gravity: ToastGravity.CENTER,
+                                      timeInSecForIosWeb: 1,
+                                      backgroundColor:
+                                          Color.fromARGB(255, 0, 255, 13),
+                                      textColor: Colors.white,
+                                      fontSize: 16.0);
+                                  //   Navigator.push(
+                                  //   context,
+                                  //   MaterialPageRoute(builder: (context) => const DQS_scan()),
+                                  // );
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            const DQS_create_qrcode()),
+                                  );
+                                } else {
                                   // print('worng');
                                   Fluttertoast.showToast(
-                                    msg: "กรุณากรอกข้อมูลให้ถูกต้อง!",
-                                    toastLength: Toast.LENGTH_SHORT,
-                                    gravity: ToastGravity.CENTER,
-                                    timeInSecForIosWeb: 1,
-                                    backgroundColor: Colors.red,
-                                    textColor: Colors.white,
-                                    fontSize: 16.0);
+                                      msg: "กรุณากรอกข้อมูลให้ถูกต้อง!",
+                                      toastLength: Toast.LENGTH_SHORT,
+                                      gravity: ToastGravity.CENTER,
+                                      timeInSecForIosWeb: 1,
+                                      backgroundColor: Colors.red,
+                                      textColor: Colors.white,
+                                      fontSize: 16.0);
                                 }
                                 // print('userdata : ${userdata.length}');
 
@@ -214,5 +224,10 @@ class _login_pageState extends State<login_page> {
       }
     }
     return false;
+  }
+
+  Future<void> setUsername(textUsername) async {
+    final SharedPreferences pref = await SharedPreferences.getInstance();
+    pref.setString('username', textUsername);
   }
 }
