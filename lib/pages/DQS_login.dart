@@ -28,6 +28,7 @@ class _login_pageState extends State<login_page> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color.fromRGBO(16, 5, 117, 35),
       body: ListView(
         children: [
           Padding(

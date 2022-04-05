@@ -31,6 +31,7 @@ class _DQS_scanqrcodeState extends State<DQS_scanqrcode> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color.fromRGBO(16, 5, 117, 35),
       body: Column(
         children: <Widget>[
           Expanded(flex: 4, child: _buildQrView(context)),
@@ -51,7 +52,7 @@ class _DQS_scanqrcodeState extends State<DQS_scanqrcode> {
                         child: Text(
                             'Barcode Type: ${describeEnum(result!.format)}   Data: ${result!.code}'))
                   else
-                    Text('Scan Qr code'),
+                    //Text('Scan Qr code'),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.center,
@@ -126,6 +127,7 @@ class _DQS_scanqrcodeState extends State<DQS_scanqrcode> {
           cutOutSize: scanArea),
       onPermissionSet: (ctrl, p) => _onPermissionSet(context, ctrl, p),
     );
+    
   }
 
   void _onQRViewCreated(QRViewController controller) {
