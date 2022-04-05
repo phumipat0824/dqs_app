@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: new ThemeData(
           scaffoldBackgroundColor: const Color.fromRGBO(16, 5, 117, 35)),
-      home: DQS_scanqrcode(),
+      home:DQS_scanqrcode(),
     );
   }
 }

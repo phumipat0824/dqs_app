@@ -107,7 +107,9 @@ class _DQS_create_qrcodeState extends State<DQS_create_qrcode> {
                   ),
                 ),
               ),
+              
             ],
+            
           ),
         ],
       ),
