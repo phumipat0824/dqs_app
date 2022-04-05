@@ -1,8 +1,13 @@
+import 'dart:convert';
 import 'package:flutter/material.dart';
-
 import 'package:flutter_signin_button/button_builder.dart';
 import 'package:flutter_signin_button/button_list.dart';
 import 'package:flutter_signin_button/button_view.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:http/http.dart' as http;
+import 'package:qr_code_scanner/qr_code_scanner.dart';
+
+import 'package:crypto/crypto.dart';
 
 class login_page extends StatefulWidget {
   const login_page({Key? key}) : super(key: key);
@@ -12,6 +17,14 @@ class login_page extends StatefulWidget {
 }
 
 class _login_pageState extends State<login_page> {
+  TextEditingController username = TextEditingController();
+  TextEditingController password = TextEditingController();
+  List userdata = [];
+  void initState() {
+    super.initState();
+    getUers();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -46,7 +59,7 @@ class _login_pageState extends State<login_page> {
                             Container(
                               width: 350.0,
                               child: TextField(
-                                  // controller: username,
+                                  controller: username,
                                   decoration: InputDecoration(
                                       labelText: 'ชื่อผู้ใช้/อีเมล',
                                       border: UnderlineInputBorder())),
@@ -55,7 +68,8 @@ class _login_pageState extends State<login_page> {
                             Container(
                               width: 350.0,
                               child: TextField(
-                                  // controller: username,
+                                  obscureText: true,
+                                  controller: password,
                                   decoration: InputDecoration(
                                       labelText: 'รหัสผ่าน',
                                       border: UnderlineInputBorder())),
@@ -69,7 +83,30 @@ class _login_pageState extends State<login_page> {
                                   )
                                 ]),
                             ElevatedButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                print('-----------');
+                                print('username: ${username.text}');
+                                print('password: ${password.text}');
+                                getUers();
+                                if (checkLogin(username.text, password.text)) {
+                                  //   Navigator.push(
+                                  //   context,
+                                  //   MaterialPageRoute(builder: (context) => const ()),
+                                  // );
+                                } else {
+                                  print('worng');
+                                }
+                                // print('userdata : ${userdata.length}');
+
+                                // Fluttertoast.showToast(
+                                //     msg: "Login Successfully!",
+                                //     toastLength: Toast.LENGTH_SHORT,
+                                //     gravity: ToastGravity.CENTER,
+                                //     timeInSecForIosWeb: 1,
+                                //     backgroundColor: Colors.red,
+                                //     textColor: Colors.white,
+                                //     fontSize: 16.0);
+                              },
                               child: Text("เข้าสู่ระบบ"),
                               style: ButtonStyle(
                                   backgroundColor: MaterialStateProperty.all(
@@ -133,5 +170,32 @@ class _login_pageState extends State<login_page> {
         ],
       ),
     );
+  }
+
+  getUers() async {
+    var url = Uri.parse('http://103.129.15.182/DQS/index.php/Api_test/Api');
+    var response = await http.get(url);
+    var result = utf8.decode(response.bodyBytes);
+    // print(result);
+    setState(() {
+      userdata = jsonDecode(result);
+    });
+  }
+
+  checkLogin(String username, String password) {
+    var hashpass = md5.convert(utf8.encode(password)).toString();
+    // print(username);
+    // print(password);
+    // print(hashpass);
+    // print(userdata.length);
+    for (var i = 0; i < userdata.length; i++) {
+      if ((username == userdata[i]['mem_username'] ||
+              username == userdata[i]['mem_email']) &&
+          hashpass == userdata[i]['mem_password']) {
+        // print('yes');
+        return true;
+      }
+    }
+    return false;
   }
 }

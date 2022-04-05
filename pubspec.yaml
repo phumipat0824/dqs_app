@@ -43,7 +43,8 @@ dependencies:
   expandable: ^5.0.1
   qr_flutter: ^4.0.0
   shared_preferences: ^2.0.13
-  carousel_slider: ^4.0.0
+  qr_code_scanner: ^0.7.0
+  barcode_widget: ^2.0.1
 dev_dependencies:
   flutter_test:
     sdk: flutter
