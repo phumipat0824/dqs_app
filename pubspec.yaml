@@ -55,6 +55,11 @@ flutter_native_splash:
   image: assets/logo_dqs_new.png
   android: true
   ios: true
+  path: ^1.8.0
+  image_picker: ^0.8.4+11
+  firebase_storage: ^10.2.8
+  file_picker: ^4.4.0
+  io: ^1.0.3
 dev_dependencies:
   flutter_test:
     sdk: flutter

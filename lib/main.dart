@@ -1,4 +1,4 @@
-
+import 'package:dqs_mobileapp/pages/DQS_create_qrcode.dart';
 import 'package:dqs_mobileapp/pages/DQS_home.dart';
 import 'package:dqs_mobileapp/pages/DQS_login.dart';
 import 'package:dqs_mobileapp/pages/DQS_scan.dart';
@@ -9,6 +9,8 @@ import 'package:dqs_mobileapp/pages/DQS_create_qrcode.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:page_transition/page_transition.dart';
 
+import 'package:file_picker/file_picker.dart';
+import 'package:path/path.dart';
 
 void main() {
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
@@ -26,8 +28,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      
-     
+
       // theme: new ThemeData(
       //     scaffoldBackgroundColor: const Color.fromRGBO(16, 5, 117, 35)),
       title: _title,
@@ -55,7 +56,6 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
     DQS_create_qrcode(),
     DQS_scanqrcode(),
     login_page(),
-    
   ];
 
   void _onItemTapped(int index) {
