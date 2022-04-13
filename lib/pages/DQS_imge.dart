@@ -37,9 +37,17 @@ class _DQS_imgeState extends State<DQS_imge> {
             padding: const EdgeInsets.all(8.0),
             child: SafeArea(
               child: Container(
+                
                 child: Center(
+                  
                   child: Column(
                     children: [
+                    
+                      SizedBox(height: 10),
+                      Image.network(
+                        'http://103.129.15.182/DQS/assets/image/logo_dqs.PNG',
+                        width: 200,
+                      ),
                       Text(
                         'สร้างคิวอาร์โค้ด',
                         style: TextStyle(
@@ -67,7 +75,7 @@ class _DQS_imgeState extends State<DQS_imge> {
                                 child: Text("เว็บไซต์"),
                                 style: ButtonStyle(
                                     backgroundColor: MaterialStateProperty.all(
-                                        Colors.blueGrey),
+                                        Color.fromARGB(255, 255, 208, 20)),
                                     textStyle: MaterialStateProperty.all(
                                         TextStyle(fontSize: 10))),
                               ),
@@ -95,7 +103,7 @@ class _DQS_imgeState extends State<DQS_imge> {
                                 child: Text("PDF"),
                                 style: ButtonStyle(
                                     backgroundColor: MaterialStateProperty.all(
-                                        Colors.blueGrey),
+                                        Color.fromARGB(255, 255, 208, 20)),
                                     textStyle: MaterialStateProperty.all(
                                         TextStyle(fontSize: 10))),
                               ),
@@ -117,7 +125,7 @@ class _DQS_imgeState extends State<DQS_imge> {
                                 child: Text("รูปภาพ"),
                                 style: ButtonStyle(
                                     backgroundColor: MaterialStateProperty.all(
-                                        Colors.blueGrey),
+                                        Color.fromARGB(255, 255, 208, 20)),
                                     textStyle: MaterialStateProperty.all(
                                         TextStyle(fontSize: 10))),
                               ),
@@ -140,7 +148,21 @@ class _DQS_imgeState extends State<DQS_imge> {
                                   print(result.files.single.path);
                                 }
                               },
-                              child: Text("อัพโหลดรูปภาพ"),
+                              child: Column(
+                                // Replace with a Row for horizontal icon + text
+                                children: <Widget>[
+                                  Icon(Icons.add),
+                                  Text("อัพโหลดรูปภาพ")
+                                ],
+                              ),
+                              style: ButtonStyle(
+                                backgroundColor: MaterialStateProperty.all(
+                                    Color.fromARGB(255, 159, 159, 159)),
+                                textStyle: MaterialStateProperty.all(
+                                    TextStyle(fontSize: 16)),
+                                padding: MaterialStateProperty.all(
+                                    EdgeInsets.fromLTRB(60, 20, 60, 20)),
+                              ),
                             ),
                             // SizedBox(height: 20),
 
@@ -179,6 +201,16 @@ class _DQS_imgeState extends State<DQS_imge> {
                           ],
                         ),
                       ),
+                        IconButton(
+                        icon: Icon(Icons.chevron_left),
+                        iconSize: 50,
+                        onPressed: () {
+                          Navigator.pop(context);
+                        },
+                        
+                        color: Colors.white,
+                      ),
+                      
                     ],
                   ),
                 ),
