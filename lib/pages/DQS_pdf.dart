@@ -1,3 +1,4 @@
+import 'package:dqs_mobileapp/main.dart';
 import 'package:dqs_mobileapp/pages/DQS_create_qrcode.dart';
 import 'package:dqs_mobileapp/pages/DQS_home.dart';
 import 'package:dqs_mobileapp/pages/DQS_imge.dart';
@@ -69,7 +70,7 @@ class _DQS_pdfState extends State<DQS_pdf> {
                                     context,
                                     MaterialPageRoute(
                                         builder: (context) =>
-                                            const DQS_create_qrcode()),
+                                            const MyApp()),
                                   );
                                 },
                                 child: Text("เว็บไซต์"),
@@ -213,9 +214,24 @@ class _DQS_pdfState extends State<DQS_pdf> {
                             ),
 
                             //Divider(color: Colors.grey[300],),
-                            SizedBox(height: 5),
+                            SizedBox(height: 10),
 
+                            // SizedBox(height: 30),
+                            ElevatedButton(
+                              onPressed: () {
+                                clearUser();
+                              },
+                              child: Text("ออกจากระบบ"),
+                              style: ButtonStyle(
+                                  backgroundColor: MaterialStateProperty.all(
+                                      Color.fromRGBO(255, 5, 0, 35)),
+                                  padding: MaterialStateProperty.all(
+                                      EdgeInsets.fromLTRB(55, 15, 55, 15)),
+                                  textStyle: MaterialStateProperty.all(
+                                      TextStyle(fontSize: 16))),
+                            ),
                             SizedBox(height: 30),
+
                           ],
                         ),
                       ),
@@ -228,6 +244,7 @@ class _DQS_pdfState extends State<DQS_pdf> {
                         
                         color: Colors.white,
                       ),
+                      
                     ],
                   ),
                 ),
@@ -265,6 +282,10 @@ class _DQS_pdfState extends State<DQS_pdf> {
     setState(() {
       txtUrl = pref.getString('url');
     });
+  }
+  Future<void> clearUser() async {
+    final SharedPreferences pref = await SharedPreferences.getInstance();
+    pref.setString('username', ' ');
   }
 }
 

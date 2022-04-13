@@ -161,7 +161,7 @@ class _DQS_imgeState extends State<DQS_imge> {
                                 textStyle: MaterialStateProperty.all(
                                     TextStyle(fontSize: 16)),
                                 padding: MaterialStateProperty.all(
-                                    EdgeInsets.fromLTRB(60, 20, 60, 20)),
+                                    EdgeInsets.fromLTRB(50, 20, 50, 20)),
                               ),
                             ),
                             // SizedBox(height: 20),
@@ -195,9 +195,23 @@ class _DQS_imgeState extends State<DQS_imge> {
                             ),
 
                             //Divider(color: Colors.grey[300],),
-                            SizedBox(height: 5),
+                            SizedBox(height: 10),
 
-                            SizedBox(height: 30),
+                            // SizedBox(height: 30),
+                            ElevatedButton(
+                              onPressed: () {
+                                clearUser();
+                              },
+                              child: Text("ออกจากระบบ"),
+                              style: ButtonStyle(
+                                  backgroundColor: MaterialStateProperty.all(
+                                      Color.fromRGBO(255, 5, 0, 35)),
+                                  padding: MaterialStateProperty.all(
+                                      EdgeInsets.fromLTRB(55, 15, 55, 15)),
+                                  textStyle: MaterialStateProperty.all(
+                                      TextStyle(fontSize: 16))),
+                            ),
+                            SizedBox(height: 25),
                           ],
                         ),
                       ),
@@ -236,6 +250,10 @@ class _DQS_imgeState extends State<DQS_imge> {
     setState(() {
       txtUsername = pref.getString('username');
     });
+  }
+  Future<void> clearUser() async {
+    final SharedPreferences pref = await SharedPreferences.getInstance();
+    pref.setString('username', ' ');
   }
 }
 
