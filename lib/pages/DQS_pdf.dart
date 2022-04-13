@@ -220,6 +220,12 @@ class _DQS_pdfState extends State<DQS_pdf> {
                             ElevatedButton(
                               onPressed: () {
                                 clearUser();
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            const MyApp()),
+                                  );
                               },
                               child: Text("ออกจากระบบ"),
                               style: ButtonStyle(

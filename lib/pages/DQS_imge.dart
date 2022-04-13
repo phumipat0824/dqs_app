@@ -11,6 +11,8 @@ import 'package:dio/dio.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:path/path.dart';
 
+import '../main.dart';
+
 class DQS_imge extends StatefulWidget {
   const DQS_imge({Key? key}) : super(key: key);
 
@@ -201,6 +203,12 @@ class _DQS_imgeState extends State<DQS_imge> {
                             ElevatedButton(
                               onPressed: () {
                                 clearUser();
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            const MyApp()),
+                                  );
                               },
                               child: Text("ออกจากระบบ"),
                               style: ButtonStyle(
