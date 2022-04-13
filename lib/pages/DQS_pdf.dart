@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:dqs_mobileapp/pages/DQS_create_qrcode.dart';
 import 'package:dqs_mobileapp/pages/DQS_home.dart';
 import 'package:dqs_mobileapp/pages/DQS_imge.dart';
@@ -10,6 +12,7 @@ import 'package:go_router/go_router.dart';
 import 'package:dio/dio.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:path/path.dart';
+import 'package:http/http.dart' as http;
 
 class DQS_pdf extends StatefulWidget {
   const DQS_pdf({Key? key}) : super(key: key);
@@ -143,7 +146,8 @@ class _DQS_pdfState extends State<DQS_pdf> {
                                   print("No file selected");
                                 } else {
                                   String? path = result.files.single.path;
-                                  _upload(result, path);
+                                  _upload(result, path, '${txtUsername}');
+                                  _upload_db(result, path, '${txtUsername}');
                                   //setUrl(result.files.single.name);
                                   txtUrl =
                                       "http://103.129.15.182/DQS/assets/user/" +
@@ -238,11 +242,12 @@ Future<void> setURL(textURL) async {
   pref.setString('url', textURL);
 }
 
-void _upload(FilePickerResult result, String? path) async {
+void _upload(FilePickerResult result, String? path, String txtUsername) async {
   String fileName = result.files.single.name;
   String filePath = './' + result.files.single.name;
 
   FormData data = FormData.fromMap({
+    'Username': txtUsername,
     "file": await MultipartFile.fromFile(
       path!,
       filename: fileName,
@@ -255,4 +260,35 @@ void _upload(FilePickerResult result, String? path) async {
           data: data)
       .then((response) => print(response))
       .catchError((error) => print(error));
+
+  // var request = http.MultipartRequest('POST',
+  //     Uri.parse("http://103.129.15.182/DQS/assets/user/DQS_api_upload_db.php"));
+  // request.files.add(await http.MultipartFile.fromPath('pdf', filename));
+  // var res = await request.send();
+  // Dio dio_db = new Dio();
+  // dio_db
+  //     .post("http://103.129.15.182/DQS/assets/user/DQS_api_upload_db.php",
+  //         data: data)
+  //     .then((response) => print(response))
+  //     .catchError((error) => print(error));
+}
+
+void _upload_db(
+    FilePickerResult result, String? path, String txtUsername) async {
+  String fileName = result.files.single.name;
+  //String fileType = result.files.single.type;
+  var api =
+      Uri.parse('http://103.129.15.182/DQS/assets/user/DQS_api_upload_db.php');
+  var response = await http.post(api,
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+      body: jsonEncode(<String, String>{
+        'Username': txtUsername,
+        "fileName": fileName,
+        "path": path!
+      }));
+  print(
+    response.body.toString(),
+  );
 }

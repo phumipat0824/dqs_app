@@ -21,6 +21,7 @@ class DQS_imge extends StatefulWidget {
 class _DQS_imgeState extends State<DQS_imge> {
   TextEditingController url = TextEditingController();
   String? txtUsername = ' ';
+  String? txtUrl = ' ';
   @override
   void initState() {
     super.initState();
@@ -135,9 +136,16 @@ class _DQS_imgeState extends State<DQS_imge> {
                                   print("No file selected");
                                 } else {
                                   String? path = result.files.single.path;
-                                  _upload(result, path);
+                                  _upload(result, path, '${txtUsername}');
+                                  //setUrl(result.files.single.name);
+                                  txtUrl =
+                                      "http://103.129.15.182/DQS/assets/user/" +
+                                          '${txtUsername}' +
+                                          "/Home/" +
+                                          result.files.single.name;
                                   print(result.files.single.name);
                                   print(result.files.single.path);
+                                  print(txtUrl);
                                 }
                               },
                               child: Text("อัพโหลดรูปภาพ"),
@@ -157,7 +165,7 @@ class _DQS_imgeState extends State<DQS_imge> {
                                 var homeRounte = new MaterialPageRoute(
                                   builder: (BuildContext contex) =>
                                       DQS_show_qrcode(
-                                    value_url: url.text,
+                                    value_url: '${txtUrl}',
                                   ),
                                 );
                                 Navigator.of(context).push(homeRounte);
@@ -212,11 +220,12 @@ Future<void> setURL(textURL) async {
   pref.setString('url', textURL);
 }
 
-void _upload(FilePickerResult result, String? path) async {
+void _upload(FilePickerResult result, String? path, String txtUsername) async {
   String fileName = result.files.single.name;
   String filePath = './' + result.files.single.name;
 
   FormData data = FormData.fromMap({
+    'Username': txtUsername,
     "file": await MultipartFile.fromFile(
       path!,
       filename: fileName,
