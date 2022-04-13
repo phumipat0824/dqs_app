@@ -4,9 +4,10 @@ import 'package:dqs_mobileapp/pages/DQS_login.dart';
 import 'package:dqs_mobileapp/pages/DQS_pdf.dart';
 import 'package:dqs_mobileapp/pages/DQS_show_qrcode.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:flutter_signin_button/flutter_signin_button.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:go_router/go_router.dart';
+
 
 class DQS_create_qrcode extends StatefulWidget {
   const DQS_create_qrcode({Key? key}) : super(key: key);
@@ -37,7 +38,12 @@ class _DQS_create_qrcodeState extends State<DQS_create_qrcode> {
                 child: Center(
                   child: Column(
                     children: [
-                      SizedBox(height: 80),
+                      SizedBox(height: 40),
+                      Image.network(
+                        
+                        'http://103.129.15.182/DQS/assets/image/logo_dqs.PNG',
+                        width: 200,
+                      ),
                       Text(
                         'สร้างคิวอาร์โค้ด',
                         style: TextStyle(
@@ -58,14 +64,14 @@ class _DQS_create_qrcodeState extends State<DQS_create_qrcode> {
                                 child: Text("เว็บไซต์"),
                                 style: ButtonStyle(
                                     backgroundColor: MaterialStateProperty.all(
-                                        Colors.blueGrey),
+                                        Color.fromARGB(255, 255, 208, 20)),
                                     textStyle: MaterialStateProperty.all(
                                         TextStyle(fontSize: 10))),
                               ),
                               SizedBox(width: 10),
                               ElevatedButton(
                                 onPressed: () {
-                                  if (txtUsername == null) {
+                                  if (txtUsername == ' ') {
                                     print('${txtUsername}');
                                     Navigator.push(
                                       context,
@@ -86,14 +92,14 @@ class _DQS_create_qrcodeState extends State<DQS_create_qrcode> {
                                 child: Text("PDF"),
                                 style: ButtonStyle(
                                     backgroundColor: MaterialStateProperty.all(
-                                        Colors.blueGrey),
+                                        Color.fromARGB(255, 255, 208, 20)),
                                     textStyle: MaterialStateProperty.all(
                                         TextStyle(fontSize: 10))),
                               ),
                               SizedBox(width: 10),
                               ElevatedButton(
                                 onPressed: () {
-                                  if (txtUsername == null) {
+                                  if (txtUsername == ' ') {
                                     print('${txtUsername}');
                                     Navigator.push(
                                       context,
@@ -114,7 +120,7 @@ class _DQS_create_qrcodeState extends State<DQS_create_qrcode> {
                                 child: Text("รูปภาพ"),
                                 style: ButtonStyle(
                                     backgroundColor: MaterialStateProperty.all(
-                                        Colors.blueGrey),
+                                        Color.fromARGB(255, 255, 208, 20)),
                                     textStyle: MaterialStateProperty.all(
                                         TextStyle(fontSize: 10))),
                               ),

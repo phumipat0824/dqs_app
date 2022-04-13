@@ -2,6 +2,8 @@ import 'package:dqs_mobileapp/pages/DQS_create_qrcode.dart';
 import 'package:dqs_mobileapp/pages/DQS_home.dart';
 import 'package:dqs_mobileapp/pages/DQS_login.dart';
 import 'package:dqs_mobileapp/pages/DQS_scan.dart';
+
+
 import 'package:dqs_mobileapp/pages/splash_screen.dart';
 import 'package:dqs_mobileapp/states/authen.dart';
 import 'package:flutter/material.dart';
@@ -9,7 +11,7 @@ import 'package:dqs_mobileapp/pages/DQS_create_qrcode.dart';
 //import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:page_transition/page_transition.dart';
 
-import 'package:file_picker/file_picker.dart';
+
 import 'package:path/path.dart';
 
 void main() {
@@ -100,22 +102,26 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
         child: _widgetOptions.elementAt(_selectedIndex),
       ),
       bottomNavigationBar: BottomNavigationBar(
+        backgroundColor: Color.fromARGB(255, 255, 208, 20),
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(Icons.qr_code),
+            backgroundColor: Color.fromARGB(255, 255, 255, 255),
             label: 'สร้างคิวอาร์โค้ด',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.expand),
+            backgroundColor: Color.fromARGB(255, 255, 255, 255),
             label: 'สแกนคิวอาร์โค้ด',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.login),
+            backgroundColor: Color.fromARGB(255, 255, 255, 255),
             label: 'เข้าสู่ระบบ',
           ),
         ],
         currentIndex: _selectedIndex,
-        selectedItemColor: Colors.amber[800],
+        selectedItemColor: Color.fromARGB(255, 0, 0, 0),
         onTap: _onItemTapped,
       ),
     );

@@ -11,6 +11,8 @@ import 'package:dio/dio.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:path/path.dart';
 
+import '../main.dart';
+
 class DQS_imge extends StatefulWidget {
   const DQS_imge({Key? key}) : super(key: key);
 
@@ -38,9 +40,17 @@ class _DQS_imgeState extends State<DQS_imge> {
             padding: const EdgeInsets.all(8.0),
             child: SafeArea(
               child: Container(
+                
                 child: Center(
+                  
                   child: Column(
                     children: [
+                    
+                      SizedBox(height: 10),
+                      Image.network(
+                        'http://103.129.15.182/DQS/assets/image/logo_dqs.PNG',
+                        width: 200,
+                      ),
                       Text(
                         'สร้างคิวอาร์โค้ด',
                         style: TextStyle(
@@ -68,7 +78,7 @@ class _DQS_imgeState extends State<DQS_imge> {
                                 child: Text("เว็บไซต์"),
                                 style: ButtonStyle(
                                     backgroundColor: MaterialStateProperty.all(
-                                        Colors.blueGrey),
+                                        Color.fromARGB(255, 255, 208, 20)),
                                     textStyle: MaterialStateProperty.all(
                                         TextStyle(fontSize: 10))),
                               ),
@@ -96,7 +106,7 @@ class _DQS_imgeState extends State<DQS_imge> {
                                 child: Text("PDF"),
                                 style: ButtonStyle(
                                     backgroundColor: MaterialStateProperty.all(
-                                        Colors.blueGrey),
+                                        Color.fromARGB(255, 255, 208, 20)),
                                     textStyle: MaterialStateProperty.all(
                                         TextStyle(fontSize: 10))),
                               ),
@@ -118,7 +128,7 @@ class _DQS_imgeState extends State<DQS_imge> {
                                 child: Text("รูปภาพ"),
                                 style: ButtonStyle(
                                     backgroundColor: MaterialStateProperty.all(
-                                        Colors.blueGrey),
+                                        Color.fromARGB(255, 255, 208, 20)),
                                     textStyle: MaterialStateProperty.all(
                                         TextStyle(fontSize: 10))),
                               ),
@@ -148,7 +158,21 @@ class _DQS_imgeState extends State<DQS_imge> {
                                   print(txtUrl);
                                 }
                               },
-                              child: Text("อัพโหลดรูปภาพ"),
+                              child: Column(
+                                // Replace with a Row for horizontal icon + text
+                                children: <Widget>[
+                                  Icon(Icons.add),
+                                  Text("อัพโหลดรูปภาพ")
+                                ],
+                              ),
+                              style: ButtonStyle(
+                                backgroundColor: MaterialStateProperty.all(
+                                    Color.fromARGB(255, 159, 159, 159)),
+                                textStyle: MaterialStateProperty.all(
+                                    TextStyle(fontSize: 16)),
+                                padding: MaterialStateProperty.all(
+                                    EdgeInsets.fromLTRB(50, 20, 50, 20)),
+                              ),
                             ),
                             // SizedBox(height: 20),
 
@@ -181,12 +205,42 @@ class _DQS_imgeState extends State<DQS_imge> {
                             ),
 
                             //Divider(color: Colors.grey[300],),
-                            SizedBox(height: 5),
+                            SizedBox(height: 10),
 
-                            SizedBox(height: 30),
+                            // SizedBox(height: 30),
+                            ElevatedButton(
+                              onPressed: () {
+                                clearUser();
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            const MyApp()),
+                                  );
+                              },
+                              child: Text("ออกจากระบบ"),
+                              style: ButtonStyle(
+                                  backgroundColor: MaterialStateProperty.all(
+                                      Color.fromRGBO(255, 5, 0, 35)),
+                                  padding: MaterialStateProperty.all(
+                                      EdgeInsets.fromLTRB(55, 15, 55, 15)),
+                                  textStyle: MaterialStateProperty.all(
+                                      TextStyle(fontSize: 16))),
+                            ),
+                            SizedBox(height: 25),
                           ],
                         ),
                       ),
+                        IconButton(
+                        icon: Icon(Icons.chevron_left),
+                        iconSize: 50,
+                        onPressed: () {
+                          Navigator.pop(context);
+                        },
+                        
+                        color: Colors.white,
+                      ),
+                      
                     ],
                   ),
                 ),
@@ -212,6 +266,10 @@ class _DQS_imgeState extends State<DQS_imge> {
     setState(() {
       txtUsername = pref.getString('username');
     });
+  }
+  Future<void> clearUser() async {
+    final SharedPreferences pref = await SharedPreferences.getInstance();
+    pref.setString('username', ' ');
   }
 }
 

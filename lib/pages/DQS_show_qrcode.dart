@@ -53,9 +53,19 @@ class _DQS_show_qrcodeState extends State<DQS_show_qrcode> {
                                   textStyle: MaterialStateProperty.all(
                                       TextStyle(fontSize: 16))),
                             ),
+                              IconButton(
+                        icon: Icon(Icons.chevron_left),
+                        iconSize: 50,
+                        onPressed: () {
+                          Navigator.pop(context);
+                        },
+                        
+                        color: Colors.white,
+                      ),
         ]),
         
       ),
+      
     );
   }
  

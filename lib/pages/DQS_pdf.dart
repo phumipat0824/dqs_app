@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:dqs_mobileapp/main.dart';
 import 'package:dqs_mobileapp/pages/DQS_create_qrcode.dart';
 import 'package:dqs_mobileapp/pages/DQS_home.dart';
 import 'package:dqs_mobileapp/pages/DQS_imge.dart';
@@ -45,6 +46,11 @@ class _DQS_pdfState extends State<DQS_pdf> {
                 child: Center(
                   child: Column(
                     children: [
+                      SizedBox(height: 10),
+                      Image.network(
+                        'http://103.129.15.182/DQS/assets/image/logo_dqs.PNG',
+                        width: 200,
+                      ),
                       Text(
                         'สร้างคิวอาร์โค้ด',
                         style: TextStyle(
@@ -65,14 +71,13 @@ class _DQS_pdfState extends State<DQS_pdf> {
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                        builder: (context) =>
-                                            const DQS_create_qrcode()),
+                                        builder: (context) => const MyApp()),
                                   );
                                 },
                                 child: Text("เว็บไซต์"),
                                 style: ButtonStyle(
                                     backgroundColor: MaterialStateProperty.all(
-                                        Colors.blueGrey),
+                                        Color.fromARGB(255, 255, 208, 20)),
                                     textStyle: MaterialStateProperty.all(
                                         TextStyle(fontSize: 10))),
                               ),
@@ -100,7 +105,7 @@ class _DQS_pdfState extends State<DQS_pdf> {
                                 child: Text("PDF"),
                                 style: ButtonStyle(
                                     backgroundColor: MaterialStateProperty.all(
-                                        Colors.blueGrey),
+                                        Color.fromARGB(255, 255, 208, 20)),
                                     textStyle: MaterialStateProperty.all(
                                         TextStyle(fontSize: 10))),
                               ),
@@ -128,7 +133,7 @@ class _DQS_pdfState extends State<DQS_pdf> {
                                 child: Text("รูปภาพ"),
                                 style: ButtonStyle(
                                     backgroundColor: MaterialStateProperty.all(
-                                        Colors.blueGrey),
+                                        Color.fromARGB(255, 255, 208, 20)),
                                     textStyle: MaterialStateProperty.all(
                                         TextStyle(fontSize: 10))),
                               ),
@@ -158,7 +163,21 @@ class _DQS_pdfState extends State<DQS_pdf> {
                                   print(result.files.single.path);
                                 }
                               },
-                              child: Text("อัพโหลดไฟล์"),
+                              child: Column(
+                                // Replace with a Row for horizontal icon + text
+                                children: <Widget>[
+                                  Icon(Icons.upload),
+                                  Text("อัพโหลดไฟล์")
+                                ],
+                              ),
+                              style: ButtonStyle(
+                                backgroundColor: MaterialStateProperty.all(
+                                    Color.fromARGB(255, 159, 159, 159)),
+                                textStyle: MaterialStateProperty.all(
+                                    TextStyle(fontSize: 16)),
+                                padding: MaterialStateProperty.all(
+                                    EdgeInsets.fromLTRB(60, 20, 60, 20)),
+                              ),
                             ),
                             // SizedBox(height: 20),
 
@@ -191,11 +210,38 @@ class _DQS_pdfState extends State<DQS_pdf> {
                             ),
 
                             //Divider(color: Colors.grey[300],),
-                            SizedBox(height: 5),
+                            SizedBox(height: 10),
 
+                            // SizedBox(height: 30),
+                            ElevatedButton(
+                              onPressed: () {
+                                clearUser();
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => const MyApp()),
+                                );
+                              },
+                              child: Text("ออกจากระบบ"),
+                              style: ButtonStyle(
+                                  backgroundColor: MaterialStateProperty.all(
+                                      Color.fromRGBO(255, 5, 0, 35)),
+                                  padding: MaterialStateProperty.all(
+                                      EdgeInsets.fromLTRB(55, 15, 55, 15)),
+                                  textStyle: MaterialStateProperty.all(
+                                      TextStyle(fontSize: 16))),
+                            ),
                             SizedBox(height: 30),
                           ],
                         ),
+                      ),
+                      IconButton(
+                        icon: Icon(Icons.chevron_left),
+                        iconSize: 50,
+                        onPressed: () {
+                          Navigator.pop(context);
+                        },
+                        color: Colors.white,
                       ),
                     ],
                   ),
@@ -234,6 +280,11 @@ class _DQS_pdfState extends State<DQS_pdf> {
     setState(() {
       txtUrl = pref.getString('url');
     });
+  }
+
+  Future<void> clearUser() async {
+    final SharedPreferences pref = await SharedPreferences.getInstance();
+    pref.setString('username', ' ');
   }
 }
 
