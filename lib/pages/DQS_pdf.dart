@@ -46,7 +46,27 @@ class _DQS_pdfState extends State<DQS_pdf> {
                 child: Center(
                   child: Column(
                     children: [
-                      SizedBox(height: 10),
+                      ElevatedButton(
+                              onPressed: () {
+                                clearUser();
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => const MyApp()),
+                                );
+                              },
+                              child: Text("ออกจากระบบ"),
+                              style: ButtonStyle(
+                                  backgroundColor: MaterialStateProperty.all(
+                                      Color.fromRGBO(255, 5, 0, 35)),
+                                  padding: MaterialStateProperty.all(
+                                      EdgeInsets.fromLTRB(55, 10, 55, 10),
+                                      ),
+                                  textStyle: MaterialStateProperty.all(
+                                      TextStyle(fontSize: 16))),
+                            ),
+                      SizedBox(height: 5),
+
                       Image.network(
                         'http://103.129.15.182/DQS/assets/image/logo_dqs.PNG',
                         width: 200,
@@ -213,25 +233,8 @@ class _DQS_pdfState extends State<DQS_pdf> {
                             SizedBox(height: 10),
 
                             // SizedBox(height: 30),
-                            ElevatedButton(
-                              onPressed: () {
-                                clearUser();
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => const MyApp()),
-                                );
-                              },
-                              child: Text("ออกจากระบบ"),
-                              style: ButtonStyle(
-                                  backgroundColor: MaterialStateProperty.all(
-                                      Color.fromRGBO(255, 5, 0, 35)),
-                                  padding: MaterialStateProperty.all(
-                                      EdgeInsets.fromLTRB(55, 15, 55, 15)),
-                                  textStyle: MaterialStateProperty.all(
-                                      TextStyle(fontSize: 16))),
-                            ),
-                            SizedBox(height: 30),
+                            
+                            SizedBox(height: 20),
                           ],
                         ),
                       ),
