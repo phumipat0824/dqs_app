@@ -8,7 +8,7 @@ import 'package:dqs_mobileapp/pages/splash_screen.dart';
 import 'package:dqs_mobileapp/states/authen.dart';
 import 'package:flutter/material.dart';
 import 'package:dqs_mobileapp/pages/DQS_create_qrcode.dart';
-import 'package:flutter_native_splash/flutter_native_splash.dart';
+//import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:page_transition/page_transition.dart';
 
 
@@ -16,7 +16,7 @@ import 'package:path/path.dart';
 
 void main() {
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
-  FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
+  //FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
   runApp(const MyApp());
 }
 
@@ -29,21 +29,17 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
-      debugShowCheckedModeBanner: false,
+        debugShowCheckedModeBanner: false,
 
-      // theme: new ThemeData(
-      //     scaffoldBackgroundColor: const Color.fromRGBO(16, 5, 117, 35)),
-      title: _title,
-      home: MyStatefulWidget()
-        
-      );
+        // theme: new ThemeData(
+        //     scaffoldBackgroundColor: const Color.fromRGBO(16, 5, 117, 35)),
+        title: _title,
+        home: MyStatefulWidget());
   }
 }
 
 class MyStatefulWidget extends StatefulWidget {
-  
-
-   const MyStatefulWidget({Key? key}) : super(key: key);
+  const MyStatefulWidget({Key? key}) : super(key: key);
 
   @override
   State<MyStatefulWidget> createState() => _MyStatefulWidgetState();
@@ -65,7 +61,8 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
       _selectedIndex = index;
     });
   }
-void _incrementCounter() {
+
+  void _incrementCounter() {
     setState(() {
       // This call to setState tells the Flutter framework that something has
       // changed in this State, which causes it to rerun the build method below
@@ -94,8 +91,9 @@ void _incrementCounter() {
     print('ready in 1...');
     await Future.delayed(const Duration(seconds: 1));
     print('go!');
-    FlutterNativeSplash.remove();
+    //FlutterNativeSplash.remove();
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

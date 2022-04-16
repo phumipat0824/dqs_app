@@ -11,6 +11,8 @@ import 'package:dio/dio.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:path/path.dart';
 
+import '../main.dart';
+
 class DQS_imge extends StatefulWidget {
   const DQS_imge({Key? key}) : super(key: key);
 
@@ -21,6 +23,7 @@ class DQS_imge extends StatefulWidget {
 class _DQS_imgeState extends State<DQS_imge> {
   TextEditingController url = TextEditingController();
   String? txtUsername = ' ';
+  String? txtUrl = ' ';
   @override
   void initState() {
     super.initState();
@@ -43,7 +46,26 @@ class _DQS_imgeState extends State<DQS_imge> {
                   child: Column(
                     children: [
                     
-                      SizedBox(height: 10),
+                      ElevatedButton(
+                              onPressed: () {
+                                clearUser();
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => const MyApp()),
+                                );
+                              },
+                              child: Text("ออกจากระบบ"),
+                              style: ButtonStyle(
+                                  backgroundColor: MaterialStateProperty.all(
+                                      Color.fromRGBO(255, 5, 0, 35)),
+                                  padding: MaterialStateProperty.all(
+                                      EdgeInsets.fromLTRB(55, 10, 55, 10),
+                                      ),
+                                  textStyle: MaterialStateProperty.all(
+                                      TextStyle(fontSize: 16))),
+                            ),
+                      SizedBox(height: 5),
                       Image.network(
                         'http://103.129.15.182/DQS/assets/image/logo_dqs.PNG',
                         width: 200,
@@ -69,7 +91,8 @@ class _DQS_imgeState extends State<DQS_imge> {
                                     context,
                                     MaterialPageRoute(
                                         builder: (context) =>
-                                            const DQS_create_qrcode()),
+                                            // const DQS_create_qrcode()
+                                            const MyApp()),
                                   );
                                 },
                                 child: Text("เว็บไซต์"),
@@ -143,9 +166,16 @@ class _DQS_imgeState extends State<DQS_imge> {
                                   print("No file selected");
                                 } else {
                                   String? path = result.files.single.path;
-                                  _upload(result, path);
+                                  _upload(result, path, '${txtUsername}');
+                                  //setUrl(result.files.single.name);
+                                  txtUrl =
+                                      "http://103.129.15.182/DQS/assets/user/" +
+                                          '${txtUsername}' +
+                                          "/Home/" +
+                                          result.files.single.name;
                                   print(result.files.single.name);
                                   print(result.files.single.path);
+                                  print(txtUrl);
                                 }
                               },
                               child: Column(
@@ -161,7 +191,7 @@ class _DQS_imgeState extends State<DQS_imge> {
                                 textStyle: MaterialStateProperty.all(
                                     TextStyle(fontSize: 16)),
                                 padding: MaterialStateProperty.all(
-                                    EdgeInsets.fromLTRB(60, 20, 60, 20)),
+                                    EdgeInsets.fromLTRB(50, 20, 50, 20)),
                               ),
                             ),
                             // SizedBox(height: 20),
@@ -179,7 +209,7 @@ class _DQS_imgeState extends State<DQS_imge> {
                                 var homeRounte = new MaterialPageRoute(
                                   builder: (BuildContext contex) =>
                                       DQS_show_qrcode(
-                                    value_url: url.text,
+                                    value_url: '${txtUrl}',
                                   ),
                                 );
                                 Navigator.of(context).push(homeRounte);
@@ -195,9 +225,10 @@ class _DQS_imgeState extends State<DQS_imge> {
                             ),
 
                             //Divider(color: Colors.grey[300],),
-                            SizedBox(height: 5),
+                            SizedBox(height: 10),
 
-                            SizedBox(height: 30),
+                            // SizedBox(height: 30),
+                            SizedBox(height: 20),
                           ],
                         ),
                       ),
@@ -237,6 +268,10 @@ class _DQS_imgeState extends State<DQS_imge> {
       txtUsername = pref.getString('username');
     });
   }
+  Future<void> clearUser() async {
+    final SharedPreferences pref = await SharedPreferences.getInstance();
+    pref.setString('username', ' ');
+  }
 }
 
 Future<void> setURL(textURL) async {
@@ -244,11 +279,12 @@ Future<void> setURL(textURL) async {
   pref.setString('url', textURL);
 }
 
-void _upload(FilePickerResult result, String? path) async {
+void _upload(FilePickerResult result, String? path, String txtUsername) async {
   String fileName = result.files.single.name;
   String filePath = './' + result.files.single.name;
 
   FormData data = FormData.fromMap({
+    'Username': txtUsername,
     "file": await MultipartFile.fromFile(
       path!,
       filename: fileName,

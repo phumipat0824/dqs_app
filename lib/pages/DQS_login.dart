@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:dqs_mobileapp/main.dart';
 import 'package:dqs_mobileapp/pages/DQS_create_qrcode.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_signin_button/button_builder.dart';
@@ -110,7 +111,7 @@ class _login_pageState extends State<login_page> {
                                     context,
                                     MaterialPageRoute(
                                         builder: (context) =>
-                                            const DQS_create_qrcode()),
+                                            const MyApp()),
                                   );
                                 } else {
                                   // print('worng');

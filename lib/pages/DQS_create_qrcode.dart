@@ -71,7 +71,7 @@ class _DQS_create_qrcodeState extends State<DQS_create_qrcode> {
                               SizedBox(width: 10),
                               ElevatedButton(
                                 onPressed: () {
-                                  if (txtUsername == null) {
+                                  if (txtUsername == ' ') {
                                     print('${txtUsername}');
                                     Navigator.push(
                                       context,
@@ -99,7 +99,7 @@ class _DQS_create_qrcodeState extends State<DQS_create_qrcode> {
                               SizedBox(width: 10),
                               ElevatedButton(
                                 onPressed: () {
-                                  if (txtUsername == null) {
+                                  if (txtUsername == ' ') {
                                     print('${txtUsername}');
                                     Navigator.push(
                                       context,
