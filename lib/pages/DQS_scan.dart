@@ -14,6 +14,7 @@ String qrData = "No data found!";
 var data;
 bool hasdata = false;
 
+
 class _DQS_scanqrcodeState extends State<DQS_scanqrcode> {
   @override
   Widget build(BuildContext context) {
@@ -72,15 +73,17 @@ class _DQS_scanqrcodeState extends State<DQS_scanqrcode> {
                   SizedBox(height: 15),
                   Container(
                    
-                    child : FloatingActionButton(
+                    child : FloatingActionButton.extended(
                      
                       shape: StadiumBorder(),
-                      child: Icon(Icons.camera_alt_rounded,),
+                      icon:  Icon(Icons.camera_alt,),
+                      label :Text("สแกนคิวอาร์โค้ด"),
                       backgroundColor: Color.fromARGB(255, 250, 217, 1),
                       
                       onPressed: () async {
                         var options = ScanOptions(
                           //autoEnableFlash: false,
+                          
                           
                         );
                         var data = await BarcodeScanner.scan(options: options);

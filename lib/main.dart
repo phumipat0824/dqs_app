@@ -110,11 +110,13 @@ void _incrementCounter() {
             icon: Icon(Icons.qr_code),
             backgroundColor: Color.fromARGB(255, 255, 255, 255),
             label: 'สร้างคิวอาร์โค้ด',
+             
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.expand),
             backgroundColor: Color.fromARGB(255, 255, 255, 255),
             label: 'สแกนคิวอาร์โค้ด',
+            
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.login),
