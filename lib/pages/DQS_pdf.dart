@@ -46,8 +46,14 @@ class _DQS_pdfState extends State<DQS_pdf> {
                 child: Center(
                   child: Column(
                     children: [
-                      ElevatedButton(
-                              onPressed: () {
+                       ElevatedButton.icon(
+                        icon: Icon(
+                          Icons.logout,
+                          color: Color.fromARGB(255, 255, 255, 255),
+                          size: 30.0,
+                        ),
+                        label: Text(''),
+                        onPressed: () {
                                 clearUser();
                                 Navigator.push(
                                   context,
@@ -55,16 +61,17 @@ class _DQS_pdfState extends State<DQS_pdf> {
                                       builder: (context) => const MyApp()),
                                 );
                               },
-                              child: Text("ออกจากระบบ"),
-                              style: ButtonStyle(
-                                  backgroundColor: MaterialStateProperty.all(
-                                      Color.fromRGBO(255, 5, 0, 35)),
-                                  padding: MaterialStateProperty.all(
-                                      EdgeInsets.fromLTRB(55, 10, 55, 10),
-                                      ),
-                                  textStyle: MaterialStateProperty.all(
-                                      TextStyle(fontSize: 16))),
-                            ),
+                        style: ButtonStyle(
+                          backgroundColor: MaterialStateProperty.all(
+                              Color.fromARGB(155, 16, 5, 117)),
+                          
+                          padding: MaterialStateProperty.all(
+                              EdgeInsets.fromLTRB(300, 10, 5, 10),
+                              ),
+                          textStyle: MaterialStateProperty.all(
+                              TextStyle(fontSize: 16))
+                        ),
+                      ),
                       SizedBox(height: 5),
 
                       Image.network(

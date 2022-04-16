@@ -8,6 +8,8 @@ import 'package:go_router/go_router.dart';
 import 'package:flutter_signin_button/flutter_signin_button.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../main.dart';
+
 
 class DQS_create_qrcode extends StatefulWidget {
   const DQS_create_qrcode({Key? key}) : super(key: key);
@@ -38,6 +40,32 @@ class _DQS_create_qrcodeState extends State<DQS_create_qrcode> {
                 child: Center(
                   child: Column(
                     children: [
+                      ElevatedButton.icon(
+                        icon: Icon(
+                          Icons.logout,
+                          color: Color.fromARGB(255, 255, 255, 255),
+                          size: 30.0,
+                        ),
+                        label: Text(''),
+                        onPressed: () {
+                                clearUser();
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => const MyApp()),
+                                );
+                              },
+                        style: ButtonStyle(
+                          backgroundColor: MaterialStateProperty.all(
+                              Color.fromARGB(237, 16, 5, 117)),
+                          
+                          padding: MaterialStateProperty.all(
+                              EdgeInsets.fromLTRB(300, 10, 5, 10),
+                              ),
+                          textStyle: MaterialStateProperty.all(
+                              TextStyle(fontSize: 16))
+                        ),
+                      ),
                       SizedBox(height: 40),
                       Image.network(
                         
@@ -189,7 +217,10 @@ class _DQS_create_qrcodeState extends State<DQS_create_qrcode> {
     });
   }
 }
-
+Future<void> clearUser() async {
+    final SharedPreferences pref = await SharedPreferences.getInstance();
+    pref.setString('username', ' ');
+  }
 Future<void> setURL(textURL) async {
   final SharedPreferences pref = await SharedPreferences.getInstance();
   pref.setString('url', textURL);
