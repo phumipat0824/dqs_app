@@ -76,8 +76,8 @@ class _DQS_scanqrcodeState extends State<DQS_scanqrcode> {
                     child : FloatingActionButton.extended(
                      
                       shape: StadiumBorder(),
-                      icon:  Icon(Icons.camera_alt,),
-                      label :Text("สแกนคิวอาร์โค้ด"),
+                      icon:  Icon(Icons.camera_alt,color: Colors.black,),
+                      label :Text("สแกนคิวอาร์โค้ด",style: TextStyle(color: Colors.black)),
                       backgroundColor: Color.fromARGB(255, 250, 217, 1),
                       
                       onPressed: () async {

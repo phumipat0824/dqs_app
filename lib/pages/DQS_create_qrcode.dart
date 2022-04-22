@@ -89,12 +89,12 @@ class _DQS_create_qrcodeState extends State<DQS_create_qrcode> {
                               SizedBox(width: 10),
                               ElevatedButton(
                                 onPressed: () {},
-                                child: Text("เว็บไซต์"),
+                                child: Text("เว็บไซต์",style: TextStyle(color: Colors.black)),
                                 style: ButtonStyle(
                                     backgroundColor: MaterialStateProperty.all(
                                         Color.fromARGB(255, 255, 208, 20)),
                                     textStyle: MaterialStateProperty.all(
-                                        TextStyle(fontSize: 10))),
+                                        TextStyle(fontSize: 10,),)),
                               ),
                               SizedBox(width: 10),
                               ElevatedButton(
@@ -117,12 +117,12 @@ class _DQS_create_qrcodeState extends State<DQS_create_qrcode> {
                                     );
                                   }
                                 },
-                                child: Text("PDF"),
+                                child: Text("PDF",style: TextStyle(color: Colors.black)),
                                 style: ButtonStyle(
                                     backgroundColor: MaterialStateProperty.all(
                                         Color.fromARGB(255, 255, 208, 20)),
                                     textStyle: MaterialStateProperty.all(
-                                        TextStyle(fontSize: 10))),
+                                        TextStyle(fontSize: 10,color: Colors.black),)),
                               ),
                               SizedBox(width: 10),
                               ElevatedButton(
@@ -145,12 +145,12 @@ class _DQS_create_qrcodeState extends State<DQS_create_qrcode> {
                                     );
                                   }
                                 },
-                                child: Text("รูปภาพ"),
+                                child: Text("รูปภาพ",style: TextStyle(color: Colors.black)),
                                 style: ButtonStyle(
                                     backgroundColor: MaterialStateProperty.all(
                                         Color.fromARGB(255, 255, 208, 20)),
                                     textStyle: MaterialStateProperty.all(
-                                        TextStyle(fontSize: 10))),
+                                        TextStyle(fontSize: 10,),)),
                               ),
                             ]),
                             SizedBox(height: 20),
